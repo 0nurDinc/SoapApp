@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="WithDrawMoney">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WithDrawMoneyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WithDrawMoneyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositMoney">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositMoneyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepositMoneyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EFT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="senderIBAN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipientIBAN" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EFTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EFTResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveCustomerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OpenAnAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="balance" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OpenAnAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OpenAnAccountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WithDrawMoneySoapIn">
+    <wsdl:part name="parameters" element="tns:WithDrawMoney" />
+  </wsdl:message>
+  <wsdl:message name="WithDrawMoneySoapOut">
+    <wsdl:part name="parameters" element="tns:WithDrawMoneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="DepositMoneySoapIn">
+    <wsdl:part name="parameters" element="tns:DepositMoney" />
+  </wsdl:message>
+  <wsdl:message name="DepositMoneySoapOut">
+    <wsdl:part name="parameters" element="tns:DepositMoneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="EFTSoapIn">
+    <wsdl:part name="parameters" element="tns:EFT" />
+  </wsdl:message>
+  <wsdl:message name="EFTSoapOut">
+    <wsdl:part name="parameters" element="tns:EFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveCustomer" />
+  </wsdl:message>
+  <wsdl:message name="SaveCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="OpenAnAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:OpenAnAccount" />
+  </wsdl:message>
+  <wsdl:message name="OpenAnAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:OpenAnAccountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AtmServicesSoap">
+    <wsdl:operation name="WithDrawMoney">
+      <wsdl:input message="tns:WithDrawMoneySoapIn" />
+      <wsdl:output message="tns:WithDrawMoneySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DepositMoney">
+      <wsdl:input message="tns:DepositMoneySoapIn" />
+      <wsdl:output message="tns:DepositMoneySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EFT">
+      <wsdl:input message="tns:EFTSoapIn" />
+      <wsdl:output message="tns:EFTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCustomer">
+      <wsdl:input message="tns:SaveCustomerSoapIn" />
+      <wsdl:output message="tns:SaveCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenAnAccount">
+      <wsdl:input message="tns:OpenAnAccountSoapIn" />
+      <wsdl:output message="tns:OpenAnAccountSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AtmServicesSoap" type="tns:AtmServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WithDrawMoney">
+      <soap:operation soapAction="http://tempuri.org/WithDrawMoney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositMoney">
+      <soap:operation soapAction="http://tempuri.org/DepositMoney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EFT">
+      <soap:operation soapAction="http://tempuri.org/EFT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCustomer">
+      <soap:operation soapAction="http://tempuri.org/SaveCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenAnAccount">
+      <soap:operation soapAction="http://tempuri.org/OpenAnAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AtmServicesSoap12" type="tns:AtmServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WithDrawMoney">
+      <soap12:operation soapAction="http://tempuri.org/WithDrawMoney" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositMoney">
+      <soap12:operation soapAction="http://tempuri.org/DepositMoney" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EFT">
+      <soap12:operation soapAction="http://tempuri.org/EFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCustomer">
+      <soap12:operation soapAction="http://tempuri.org/SaveCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenAnAccount">
+      <soap12:operation soapAction="http://tempuri.org/OpenAnAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AtmServices">
+    <wsdl:port name="AtmServicesSoap" binding="tns:AtmServicesSoap">
+      <soap:address location="http://localhost:53410/AtmServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AtmServicesSoap12" binding="tns:AtmServicesSoap12">
+      <soap12:address location="http://localhost:53410/AtmServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
